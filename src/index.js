@@ -11,6 +11,7 @@ mongoose.connect(process.env.MONGODB_URL)
 const PORT = process.env.PORT || 8080
 
 app.use("/todo", require('./routes/todo.routes'))
+app.use("/done-todo", require('./routes/done.routes'))
 
 app.listen(PORT, ()=>{
     console.log(`DB is Connected to port no ${PORT}`);
