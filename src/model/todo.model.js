@@ -8,8 +8,7 @@ const todoSchema = new mongoose.Schema({
         type: String
     },
     pending:{
-        type: Boolean,
-        default: false
+        type: String
     }
 },{
     versionKey: false,
