@@ -1,15 +1,16 @@
 const mongoose = require('mongoose')
 
 const todoSchema = new mongoose.Schema({
-    id: {
-        type: String
-    },
     todo:{
         type: String
     },
     status:{
         type: String,
         default: "All"
+    },
+    user_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user"
     }
 },{
     versionKey: false,

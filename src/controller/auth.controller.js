@@ -1,5 +1,6 @@
 const User = require("../model/user.model")
 const jwt = require('jsonwebtoken')
+require("dotenv").config()
 
 const newToken = (user)=>{
     return jwt.sign({ user }, process.env.JWT_SECRET_KEY)
@@ -29,6 +30,7 @@ const login = async(req, res)=>{
 
     try{
         const user = await User.findOne({ email: req.body.email });
+        console.log(user);
 
         if (!user)
         return res.status(400).send({ message: "User not found" });
