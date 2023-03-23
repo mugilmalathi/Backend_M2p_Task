@@ -4,8 +4,8 @@ module.exports = {
     list: async (req, res, next) => {
         try{
             const list = await service.list(req.body);
-            res.send(list);
-            // next()
+            res.status(202).send(list);
+            next()
         }
         catch (ex){
             console.error(ex);
@@ -16,8 +16,8 @@ module.exports = {
     get: async (req, res, next) => {
         try{
             const record = await service.get(req.params.id);
-            res.send(record);
-            // next()
+            res.status(202).send(record);
+            next()
         }
         catch (ex){
             console.error(ex);
@@ -27,10 +27,10 @@ module.exports = {
 
     create: async (req, res, next) => {
         try{
-            // req.body.user_id = req.user._id
+            req.body.user_id = req.user._id
             const record = await service.create(req.body);
-            res.send(record)
-            // next()
+            res.status(201).send(record)
+            next()
         }
         catch (ex){
             console.error(ex);
