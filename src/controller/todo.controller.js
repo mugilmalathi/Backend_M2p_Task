@@ -4,7 +4,7 @@ module.exports = {
     list: async (req, res, next) => {
         try{
             const list = await service.list(req.body);
-            res.status(202).send(list);
+            res.status(201).send(list);
             next()
         }
         catch (ex){
@@ -16,7 +16,7 @@ module.exports = {
     get: async (req, res, next) => {
         try{
             const record = await service.get(req.params.id);
-            res.status(202).send(record);
+            res.status(201).send(record);
             next()
         }
         catch (ex){
@@ -41,7 +41,7 @@ module.exports = {
     update: async (req, res) => {
         try{
             const record = await service.update(req.params.id, req.body);
-            res.send(record);
+            res.status(201).send(record);
         }
         catch (ex){
             console.error(ex);
@@ -52,7 +52,7 @@ module.exports = {
     delete: async (req, res) =>{
         try{
             const record = await service.delete(req.params.id);
-            res.send(record);
+            res.status(204).send(record);
         }
         catch (ex){
             console.error(ex);

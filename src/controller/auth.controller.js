@@ -19,7 +19,7 @@ const register = async(req, res)=>{
 
         const token = newToken(user)
 
-        res.send({ user, token })
+        res.status(201).send({ user, token })
 
     }catch(err){
         res.status(500).send(err.message)
@@ -30,7 +30,6 @@ const login = async(req, res)=>{
 
     try{
         const user = await User.findOne({ email: req.body.email });
-        console.log(user);
 
         if (!user)
         return res.status(400).send({ message: "User not found" });
@@ -41,7 +40,7 @@ const login = async(req, res)=>{
         return res.status(400).send({ message: "Please check email or password" });
       
         const token = newToken(user);
-        res.send({ user, token });
+        res.status(201).send({ user, token });
 
     }catch(err){
         res.status(500).send(err.message)

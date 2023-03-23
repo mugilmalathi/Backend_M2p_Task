@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
     password:{
-        type: String,
+        type: String
     }
 },{
     versionKey: false,
@@ -15,12 +15,12 @@ const userSchema = new mongoose.Schema({
 })
 
 userSchema.pre("save", function (next) {
+
     if (!this.isModified("password")) return next();
-  
-    var hash = bcrypt.hashSync(this.password, 8);
-    this.password = hash;
-    return next();
-  })
+        var hash = bcrypt.hashSync(this.password, 8);
+        this.password = hash;
+        return next();
+    })
   
   userSchema.methods.checkPassword = function (password) {
       return bcrypt.compareSync(password, this.password);
